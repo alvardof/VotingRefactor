@@ -1,0 +1,42 @@
+VOTACIÓN
+
+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
+
+Crear un contrato inteligente de votación, 
+donde los candidatos serán publicados, 
+y el ganador será seleccionado después de una cierta cantidad de tiempo.  
+
+
+
+
+REQUISITOS
+
+    - El propietario puede publicar un máximo de 5 candidatos
+    - Cada usuario debe registrarse en el contrato
+    - Los usuarios sólo pueden votar por 1 candidato
+    - Los candidatos no pueden votarse a sí mismos
+    - Después de 1 semana la votación termina, nadie puede votar
+    - Deben activarse eventos para el registro, la publicación de candidatos y la votación.
+    - Debe tener casos de prueba completos con hardhat o truffle
+    - Crea un archivo .env para tus variables de entorno (y gitignóralo)
+    - Crear scripts de comandos (compilar, probar, iniciar, etc...)
+    - Crea un nuevo repositorio PRIVADO en github, agrégame a él @wafflemakr, empuja constantemente
+    - ¡Recuerda añadir comentarios a tus funciones!
+
+
+BONO
+
+    - Crea rondas de votaciones simultáneas (imagina que habrá 3 votaciones al mismo tiempo. Una para presidente, otra para gobernador y otra para alcalde.
+    - Hacer el contrato mejorable
+
+
+
+ENLACES ÚTILES
+
+    - https://github.com/wafflemakr/hardhat-ethers-kit
+    - https://github.com/wafflemakr/truffle-oz-starter
+    - https://github.com/OpenZeppelin/openzeppelin-upgrades/tree/master#readme
+    - https://www.npmjs.com/package/hardhat-deploy#deploying-and-upgrading-proxies
+
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
