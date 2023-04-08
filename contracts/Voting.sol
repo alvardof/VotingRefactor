@@ -8,6 +8,7 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 contract Voting is OwnableUpgradeable{
 
     uint public unlockTime;
+    uint public seven_days;
 
     struct User 
     {
@@ -29,6 +30,8 @@ contract Voting is OwnableUpgradeable{
 
         unlockTime = block.timestamp;
 
+        seven_days = 7 * 24 * 60 * 60;
+
     }
 
 
@@ -38,33 +41,40 @@ contract Voting is OwnableUpgradeable{
         Users[msg.sender].vote = false;
         Users[msg.sender].votes = 0;
         Users[msg.sender].register = true;
-    
+
+        emit register_event(msg.sender);
 
     }
 
     function registerCandidate(address candidate) public onlyOwner() validateRegisterCandidate(candidate) {
 
-        require(candidates.length <= 5, "Only 5 Candidates");
+        require(candidates.length < 5, "Only 5 Candidates");
 
         Users[candidate].candidate = true;
 
         candidates.push(candidate);
 
+        emit registerCandidate_event(candidate);
+
 
     }
 
+   
 
     function voting(address candidate) public {
-
-        require((7 days - (block.timestamp - unlockTime)) < 7 days,"Voting Completed");
+        
+        require((block.timestamp - unlockTime) < seven_days,"Voting Completed");
+        
         require(Users[msg.sender].register == true, "Unregistered");
-        require(Users[msg.sender].vote == false, "Already Voted");
-        require(Users[candidate].register == true, "Candidate Unregistered");
         require(Users[candidate].candidate == true, "Not Candidate");
+        require(Users[msg.sender].vote == false, "Already Voted");
         require(candidate != msg.sender, "Do Not Vote For Yourself");
 
         Users[candidate].votes += 1;
         Users[msg.sender].vote = true;
+
+        emit voting_event(candidate);
+        
       
 
     }
@@ -84,6 +94,17 @@ contract Voting is OwnableUpgradeable{
             _;
         
     }
+
+    /* ========== EVENTS ========== */
+
+	event register_event(address user);
+
+    event registerCandidate_event(address user);
+
+    event voting_event(address candidate);
+
+    
+
     
 
 }
