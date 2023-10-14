@@ -13,5 +13,5 @@ module.exports = {
       gasPrice: 8000000000,
       }
     },
-  solidity: "0.8.17",
+  solidity: "0.8.17"
 };
